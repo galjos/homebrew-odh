@@ -9,9 +9,9 @@ class Odh < Formula
   depends_on "go" => :build
 
   def install
-    ldflags = %w[
+    ldflags = %W[
       -s -w
-      -X github.com/galjos/odh-cli/internal/version.Version=0.4.0
+      -X github.com/galjos/odh-cli/internal/version.Version=#{version}
       -X github.com/galjos/odh-cli/internal/version.Commit=1daf921ec183
       -X github.com/galjos/odh-cli/internal/version.Date=2026-06-26T12:33:18Z
     ]
@@ -21,7 +21,9 @@ class Odh < Formula
   end
 
   test do
-    assert_match "odh 0.4.0", shell_output("#{bin}/odh version --format text")
+    # Derived from the url, so a release that bumps one but not the other fails
+    # here instead of shipping a binary that misreports its own version.
+    assert_match "odh #{version}", shell_output("#{bin}/odh version --format text")
     assert_match "odh traffic today --area ueberetsch-unterland", shell_output("#{bin}/odh traffic today --help")
     assert_match "#compdef odh", shell_output("#{bin}/odh completion zsh")
     system bin/"odh", "doctor", "--network=false"
