@@ -1,8 +1,8 @@
 class Odh < Formula
   desc "Agent-friendly CLI for public Open Data Hub APIs"
   homepage "https://github.com/galjos/odh-cli"
-  url "https://github.com/galjos/odh-cli/archive/refs/tags/v0.4.1.tar.gz"
-  sha256 "46e099acc0ed1ad788ff51f874eba972b279000932670e065eba7223425bb609"
+  url "https://github.com/galjos/odh-cli/archive/refs/tags/v0.4.2.tar.gz"
+  sha256 "855a3aee17909f2985a0954300750130032a823205c8fe789a1f4c1ba5a9ffd6"
   license "MPL-2.0"
   head "https://github.com/galjos/odh-cli.git", branch: "main"
 
@@ -12,8 +12,8 @@ class Odh < Formula
     ldflags = %W[
       -s -w
       -X github.com/galjos/odh-cli/internal/version.Version=#{version}
-      -X github.com/galjos/odh-cli/internal/version.Commit=5eda85554f61
-      -X github.com/galjos/odh-cli/internal/version.Date=2026-08-02T07:29:11Z
+      -X github.com/galjos/odh-cli/internal/version.Commit=b7b7f9c2d4f5
+      -X github.com/galjos/odh-cli/internal/version.Date=2026-08-03T10:54:29Z
     ]
 
     system "go", "build", *std_go_args(ldflags: ldflags), "./cmd/odh"
